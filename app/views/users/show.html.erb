@@ -1,0 +1,21 @@
+<h1>User Profile</h1>
+
+  <%= image_tag(@user.user_img_url, :alt => @user.name) %><br>
+
+  <h2>Name: <%= @user.name %></h2><br>
+  <p>Bio: <%= @user.bio %></p><br><br>
+
+
+  <%= link_to "CREATE POST", new_post_path(@user.post) %><br><br>
+
+  <h2>Users Posts:</h2>
+    <ul>
+      <% @user.posts.each do |post| %>
+        <li><%= image_tag(@user.post.post_img_url, :alt => @user.post.title) %> %></li>
+      <% end %>
+    </ul>
+
+  <h3>Delete Account</h3>
+      <%= form_for @user, method: :delete do |f| %>
+        <%= f.submit "Delete" %>
+      <% end %>
