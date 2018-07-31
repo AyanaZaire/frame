@@ -1,0 +1,9 @@
+
+<%= image_tag @post.post_img_url %>
+<h1> <%= @post.title %> </h1>
+By: <%= link_to @post.user, user_path(@post.user_id) %>
+<p> <%= @post.description %> </p>
+Price: <%= @post.price %>
+
+<%= link_to "Edit", edit_post_path(@post) %>
+<%= button_to "Delete Post", { action: "destroy", id: @post.id }, method: "delete" %>

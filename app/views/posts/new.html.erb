@@ -1,0 +1,15 @@
+<h1>New Post Form</h1>
+
+<%= form_for @post do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %> <br>
+<%= f.label :description %>
+<%= f.text_area :description %> <br>
+<%= f.label :price %>
+<%= f.number_field :price, :step => "0.01" %> <br>
+<%= f.label :post_img_url, "Please Copy and Paste Image URL" %>
+<%= f.text_field :post_img_url %> <br>
+<%= f.label :category_id, "Please Select a Category" %>
+<%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true %> </br>
+<%= f.submit %>
+<% end %>
