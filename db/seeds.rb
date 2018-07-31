@@ -1,3 +1,14 @@
+
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create(name: 'Luke', movie: movies.first)
+
+
+
 categories = Category.create([{name: 'Painting'}, {name: 'Photography'}, {name: 'Sculpture'}, {name: 'Mixed Media'}])
 
 lorna_simpson = User.create(name: 'Lorna Simpson', bio: 'Lorna Simpson (born 1960) is an African-American photographer and multimedia artist who made her name in the 1980s and 1990s with artworks such as Guarded Conditions and Square Deal. She is one of the leading artists of her generation, and her works have been included in numerous exhibitions both nationally and internationally. She is best known for her photo-text installations, photocollages, and films.', user_img_url: 'https://i2.wp.com/www.culturetype.com/wp-content/uploads/2017/04/Lorna-Simpson-Photo-by-James-Wang-%C2%A9-Lorna-Simpson-Courtesy-the-artist-and-Hauser-Wirth.jpg')
