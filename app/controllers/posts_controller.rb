@@ -16,6 +16,7 @@ def create
   @post = Post.new(post_params)
   if @post.valid?
     @post.save
+    redirect_to post_path(@post)
   else
     #error message
     render :new
@@ -33,6 +34,7 @@ def update
 end
 
 def destroy
+  @post = Post.find(params[:id])
   @post.delete
   redirect_to posts_path
 end

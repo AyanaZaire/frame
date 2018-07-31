@@ -1,4 +1,7 @@
-<% @category.name %>
+<% @category.medium %>
+
+<% @category.posts.each do |cat| %>
 <ul>
-  <li>@category.posts.title</li>
+  <li><%=cat.title%></li>
 </ul>
+<% end %>

@@ -2,6 +2,6 @@
 
 <% @posts.each do |post| %>
 <%= image_tag(post.post_img_url) %>
- By: <% link_to post.user, user_path(post.user_id) #post artist (user) %>
-<%= link_to post.title, post_path(post)  #post title  %>
+
+<%= link_to post.title, post_path(post)  %>
 <% end %>
