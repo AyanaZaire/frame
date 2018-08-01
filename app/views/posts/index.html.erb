@@ -1,7 +1,9 @@
 <h1>All Posts</h1>
 
-<% @posts.each do |post| %>
-<%= image_tag(post.post_img_url) %>
 
-<%= link_to post.title, post_path(post)  %>
-<% end %>
+  <% @posts.each do |post| %>
+  <div class="gallery">
+  <%= image_tag post.post_img_url, :class => "grid_image" %>
+  <div class="desc"><%= link_to post.title, post_path(post)  %></div>
+  </div>
+  <% end %>

@@ -1,5 +1,5 @@
 
-<%= image_tag @post.post_img_url %>
+<%= image_tag @post.post_img_url, :class => "style_image" %>
 <h1> <%= @post.title %> </h1>
 By: <%= link_to @post.user.name, user_path(@post.user_id) %>
 <p> <%= @post.description %> </p>
