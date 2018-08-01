@@ -12,8 +12,9 @@
 /* STYLE IMAGE BY CLASS */
 
 .grid_image {
-  max-width: 300px;
-  max-height: 200px;
+  object-fit: cover;
+  width:400px;
+  height:400px;
 }
 
 .user_image {
@@ -23,6 +24,14 @@
   height:230px;
   padding: 30px;
   border-radius: 50%;
+}
+
+.post_image {
+  float: left;
+  object-fit: cover;
+  width:400px;
+  height:400px;
+  padding: 30px;
 }
 
 /* BUTTON  */
@@ -115,6 +124,16 @@ input, select {
     box-sizing: border-box;
 }
 
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
 input[type=submit] {
     width: 100%;
     background-color: #ED4337;
@@ -127,26 +146,30 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #000;
 }
 
-div {
+div.form {
+    width: 500px;
+    margin: 0 auto;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
 }
 
 </style>
+<nav>
+  <ul>
+    <li><%= link_to "Home", posts_path %></li>
+    <li><%= link_to "Register", new_user_path %></li>
+    <li><%= link_to "Artists", users_path %></li>
+    <li><%= link_to "Categories", categories_path %></li>
+    <li style="float:right"><%= link_to "About", about_path %></li>
+  </ul>
+</nav>
 </head>
 <body>
 
-<ul>
-  <li><%= link_to "Home", posts_path %></li>
-  <li><%= link_to "Create Post", new_post_path %></li>
-  <li><%= link_to "Artists", users_path %></li>
-  <li><%= link_to "Categories", categories_path %></li>
-  <li style="float:right"><%= link_to "About", about_path %></li>
-</ul>
 <%= yield %>
 </body>
 </html>
