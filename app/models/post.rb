@@ -6,7 +6,6 @@ class Post < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 
 
-
   def self.search(search)
      @posts = []
      Post.all.each do |post|

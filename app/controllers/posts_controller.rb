@@ -14,9 +14,12 @@ before_action :set_post, only: [:show, :edit, :update, :delete]
 def index
   if params[:search]
     @posts = Post.search(params[:search])
-    # flash[:alert] = "No matching queries found"
+      if @posts.empty?
+        flash[:alert] = "No matching queries found"
+        redirect_to posts_path
+      end
   else
-    @posts = Post.all
+      @posts = Post.all
   end
 end
 
