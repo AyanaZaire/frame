@@ -1,9 +1,26 @@
 class PostsController < ApplicationController
 before_action :set_post, only: [:show, :edit, :update, :delete]
 
+# def index
+#   @posts = Post.all
+#   if params[:title]
+#     @post = Post.where('title LIKE ?', "%#{params[:title]}%")
+#   else
+#     @post = Post.all
+#   end
+# end
+
+
 def index
-  @posts = Post.all
+  if params[:search]
+    @posts = Post.search(params[:search])
+    # flash[:alert] = "No matching queries found"
+  else
+    @posts = Post.all
+  end
 end
+
+
 
 def show
 end

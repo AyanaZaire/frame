@@ -1,5 +1,16 @@
 <h1>All Posts</h1>
 
+
+<%= form_tag(posts_path, method: :get) do %>
+   <%= text_field_tag :search, params[:search] %>
+   <%= submit_tag 'Search', :name => nil %>
+<% end %>
+
+<% if flash[:alert] %>
+  <div style="color:blue"><%= flash[:alert] %></div>
+<% end %>
+
+
 <% @posts.each do |post| %>
 <%= image_tag(post.post_img_url) %>
 
