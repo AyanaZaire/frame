@@ -1,9 +1,29 @@
 class PostsController < ApplicationController
 before_action :set_post, only: [:edit, :update, :delete]
 
+# def index
+#   @posts = Post.all
+#   if params[:title]
+#     @post = Post.where('title LIKE ?', "%#{params[:title]}%")
+#   else
+#     @post = Post.all
+#   end
+# end
+
+
 def index
-  @posts = Post.all
+  if params[:search]
+    @posts = Post.search(params[:search])
+      if @posts.empty?
+        flash[:alert] = "No matching queries found"
+        redirect_to posts_path
+      end
+  else
+      @posts = Post.all
+  end
 end
+
+
 
 def show
   return head(:forbidden) unless session.include? :user_id
