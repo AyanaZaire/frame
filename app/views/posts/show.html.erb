@@ -1,9 +1,9 @@
 
-<%= image_tag @post.post_img_url %>
+<%= image_tag @post.post_img_url, :class => "post_image" %>
 <h1> <%= @post.title %> </h1>
 By: <%= link_to @post.user.name, user_path(@post.user_id) %>
 <p> <%= @post.description %> </p>
-Price: <%= @post.price %>
+Price: <%= @post.price %><br>
 
-<%= link_to "Edit", edit_post_path(@post) %>
+<%= link_to "Edit", edit_post_path(@post), :class => "button" %>
 <%= button_to "Delete Post", { action: "destroy", id: @post.id }, method: "delete" %>

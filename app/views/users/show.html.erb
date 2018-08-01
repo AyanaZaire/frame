@@ -1,22 +1,25 @@
 <h1>User Profile</h1>
 
-  <%= image_tag(@user.user_img_url, :alt => @user.name) %><br>
-
+  <%= image_tag @user.user_img_url, :alt => @user.name, :class => "user_image" %>
   <h2>Name: <%= @user.name %></h2><br>
   <p>Bio: <%= @user.bio %></p><br><br>
 
 
-  <%= link_to "CREATE POST", new_post_path %><br><br>
-
-  <h2>Users Posts:</h2>
+  <%= link_to "Create Post", new_post_path, :class => "button" %><%= link_to "Edit Profile", edit_user_path, :class => "button" %><br><br>
+<center>
+  <h3>Users Posts:</h3>
     <ul>
       <% @user.posts.each do |post| %>
-        <li><%= image_tag(post.post_img_url, :alt => post.title) %></li>
-        <%= link_to post.title, post_path(post)  %>
+        <div class="gallery">
+          <%= image_tag post.post_img_url, :alt => post.title, :class => "grid_image" %>
+          <div class="desc"><%= link_to post.title, post_path(post)  %></div>
+          </div>
       <% end %>
     </ul>
 
   <h3>Delete Account</h3>
       <%= form_for @user, method: :delete do |f| %>
-        <%= f.submit "Delete" %>
+        <%= f.submit "Delete", :class => "button" %>
       <% end %>
+
+</center>
