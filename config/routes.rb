@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :critiques
   resources :users
   resources :categories
   resources :posts
