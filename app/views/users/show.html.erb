@@ -12,6 +12,7 @@
     <ul>
       <% @user.posts.each do |post| %>
         <li><%= image_tag(post.post_img_url, :alt => post.title) %></li>
+        <%= link_to post.title, post_path(post)  %>
       <% end %>
     </ul>
 
