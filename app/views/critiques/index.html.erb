@@ -1,0 +1,8 @@
+<h1>All Critiques</h1>
+
+<% @critiques.each do |crit| %>
+<ul>
+<li><%= link_to crit.post.title, post_path(crit) %></li>
+<li><%= crit.content %></li>
+</ul>
+<% end %>
