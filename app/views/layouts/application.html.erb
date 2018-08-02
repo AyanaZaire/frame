@@ -3,6 +3,7 @@
 <head>
   <title>Frame</title>
 <style>
+
 /* GLOBAL FONT  */
 
 /* * {
@@ -12,9 +13,9 @@
 /* STYLE IMAGE BY CLASS */
 
 .grid_image {
-  object-fit: cover;
-  width:400px;
-  height:400px;
+  object-fit: cover !important;
+  height:300px !important;
+  object-position: 50% 0%; /* default value: image is centered*/
 }
 
 .user_image {
@@ -91,7 +92,7 @@ li a:hover:not(.active) {
 
 /* IMAGE GALLERY */
 
-div.gallery {
+/* div.gallery {
     margin: 5px;
     border: 1px solid #ccc;
     float: left;
@@ -110,7 +111,7 @@ div.gallery img {
 div.desc {
     padding: 15px;
     text-align: center;
-}
+} */
 
 /* FORM STYLING  */
 
@@ -160,16 +161,21 @@ div.form {
 </style>
 <nav>
   <ul>
-    <li><%= link_to "Home", posts_path %></li>
-    <li><%= link_to "Register", new_user_path %></li>
+    <li><%= link_to "Home", home_path %></li>
+    <li><%= link_to "Posts", posts_path %></li>
     <li><%= link_to "Artists", users_path %></li>
     <li><%= link_to "Categories", categories_path %></li>
     <li><%= link_to "Critiques", critiques_path %></li>
-    <li style="float:right"><%= link_to "About", about_path %></li>
+    <!-- <li style="float:right"><%= link_to "About", about_path %></li> -->
+    <li style="float:right"><%= link_to "Log Out", logout_path %></li>
+    <li style="float:right"><%= link_to "Register", new_user_path %></li>
   </ul>
 </nav>
 </head>
 <body>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
 
 <%= yield %>
 </body>

@@ -7,3 +7,23 @@ Price: <%= @post.price %><br>
 
 <%= link_to "Edit", edit_user_post_path(@user.id), :class => "button" %><%= link_to "Critique Post", new_user_post_critique, :class => "button" %>
 <%= button_to "Delete Post", { action: "destroy", id: @post.id }, method: "delete" %>
+
+<div class="form">
+<h1>New Critique</h1>
+
+<%= form_for @critique do |f| %>
+<%= f.label :content %>
+<%= f.text_area :content %> <br>
+<%= f.hidden_field :post_id, :value => @post.id %>
+<%= f.submit "Submit Critique" %>
+<% end %>
+</div>
+
+<h1><%= @post.title %> Critiques</h1>
+
+<ul>
+  <% @post.critiques.each do |crit| %>
+  <li><%= crit.post.title %></li>
+  <li><%= crit.content %></li><br>
+  <% end %>
+</ul>

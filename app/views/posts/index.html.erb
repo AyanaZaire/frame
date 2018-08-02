@@ -1,3 +1,5 @@
+
+
 <h1>All Posts</h1>
 
 
@@ -10,12 +12,27 @@
   <div style="color:red"><%= flash[:alert] %></div>
 <% end %>
 
+<!-- <div class="ui card">
+  <a class="image" href="#">
+    <img src="/images/avatar/large/steve.jpg">
+  </a>
+  <div class="content">
+    <a class="header" href="#">Steve Jobes</a>
+    <div class="meta">
+      <a>Last Seen 2 days ago</a>
+    </div>
+  </div>
+</div> -->
 
+  <div class="ui link cards">
   <% @posts.each do |post| %>
-  <div class="gallery">
-  <%= image_tag post.post_img_url, :class => "grid_image" %>
-  <div class="desc"><%= link_to post.title, post_path(post)  %></div>
+    <div class="card">
+      <div class="image">
+        <%= image_tag post.post_img_url, :class => "grid_image" %>
+    </div>
+    <div class="content">
+      <div class="header"><%= post.title %></div>
+    </div>
   </div>
   <% end %>
-
-
+  </div>
