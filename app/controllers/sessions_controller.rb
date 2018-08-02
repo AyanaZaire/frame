@@ -1,11 +1,13 @@
 class SessionsController < ApplicationController
+  skip_before_action :check_authentication, only: [:new, :create]
 
   def new
   end
 
   def create
-   @user = User.find_by(name: params[:name])
-    if @user && params[:password] == @user.password
+   unauthenticated_user = User.find_by(name: params[:name])
+   @user = unauthenticated_user.authenticate(params[:password])
+    if @user && unauthenticated_user
        session[:user_id] = @user.id
        redirect_to user_path(@user)
     else

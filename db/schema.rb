@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2018_08_01_204216) do
-
+ActiveRecord::Schema.define(version: 2018_08_02_192409) do
 
   create_table "categories", force: :cascade do |t|
     t.string "medium"
@@ -44,7 +42,7 @@ ActiveRecord::Schema.define(version: 2018_08_01_204216) do
     t.string "user_img_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password"
+    t.string "password_digest"
   end
 
 end

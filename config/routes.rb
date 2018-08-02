@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :critiques
-  resources :users
+  resources :posts, only: [:index, :show]
   resources :categories
-  resources :posts
+  resources :critiques, only: [:index, :show]
+  resources :users do
+    resources :posts do
+      resources :critiques
+    end
+   end
 
   get 'about', to: 'static#about'
 

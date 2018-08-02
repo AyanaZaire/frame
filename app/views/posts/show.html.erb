@@ -5,5 +5,5 @@ By: <%= link_to @post.user.name, user_path(@post.user_id) %>
 <p> <%= @post.description %> </p>
 Price: <%= @post.price %><br>
 
-<%= link_to "Edit", edit_post_path(@post), :class => "button" %><%= link_to "Critique Post", new_critique_path, :class => "button" %>
+<%= link_to "Edit", edit_user_post_path(@user.id), :class => "button" %><%= link_to "Critique Post", new_user_post_critique, :class => "button" %>
 <%= button_to "Delete Post", { action: "destroy", id: @post.id }, method: "delete" %>
