@@ -19,3 +19,5 @@
       <%= form_for @user, method: :delete do |f| %>
         <%= f.submit "Delete" %>
       <% end %>
+
+  <h3><%= link_to "Log Out", logout_path, method: 'delete' %> </h3>

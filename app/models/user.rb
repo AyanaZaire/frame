@@ -4,4 +4,5 @@ class User < ApplicationRecord
 
   validates :name, :bio, :user_img_url, presence: true
   validates :bio, length: { maximum: 1000 }
+  
 end
