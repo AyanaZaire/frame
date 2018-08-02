@@ -1,4 +1,7 @@
 class CritiquesController < ApplicationController
+  before_action :check_authentication, only: [:new, :create, :edit, :update]
+  skip_before_action :check_authentication, only: [:show, :index]
+
   def index
     @critiques = Critique.all
   end
