@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-before_action :set_post, only: [:edit, :update, :delete]
+before_action :set_post, only: [:edit, :update, :destroy]
+skip_before_action :check_authentication, only: [:new, :create, :index, :show]
 
 def index
   if params[:search]
@@ -15,7 +16,6 @@ def index
 end
 
 def show
-  return head(:forbidden) unless session.include? :user_id
   @post = Post.find(params[:id])
   @critique = Critique.new
     @critique.post_id = @post.id
@@ -43,13 +43,12 @@ end
 def update
   @post = Post.find(params[:id])
   @post.update(post_params)
-  redirect_to post_path(@post)
+  redirect_to user_posts_path(@post)
 end
 
 def destroy
-  @post = Post.find(params[:id])
-  @post.delete
-  redirect_to posts_path
+  @post = Post.find(params[:id]).destroy
+  redirect_to user_posts_path
 end
 
 
