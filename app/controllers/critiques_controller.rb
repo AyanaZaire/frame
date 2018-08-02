@@ -13,9 +13,10 @@ class CritiquesController < ApplicationController
 
   def create
     @critique = Critique.new(critique_params)
+    @post = Post.find(@critique.post_id)
     if @critique.valid?
       @critique.save
-      redirect_to critique_path(@critique)
+      redirect_to post_path(@post)
     else
       render :new
     end
@@ -43,6 +44,6 @@ class CritiquesController < ApplicationController
   private
 
   def critique_params
-    params.require(:critique).permit(:name, :bio, :critique_img_url)
+    params.require(:critique).permit(:content, :post_id)
   end
 end

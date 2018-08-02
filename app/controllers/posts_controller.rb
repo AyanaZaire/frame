@@ -21,6 +21,7 @@ def index
   else
       @posts = Post.all
   end
+  @critiques = Critique.all
 end
 
 
@@ -28,6 +29,8 @@ end
 def show
   return head(:forbidden) unless session.include? :user_id
   @post = Post.find(params[:id])
+  @critique = Critique.new
+    @critique.post_id = @post.id
 end
 
 def new
