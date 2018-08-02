@@ -5,7 +5,7 @@
   <p>Bio: <%= @user.bio %></p><br><br>
 
 
-  <%= link_to "Create Post", new_post_path, :class => "button" %><%= link_to "Edit Profile", edit_user_path, :class => "button" %><br><br>
+  <%= link_to "Create Post", new_user_post_path(@user.id), :class => "button" %><%= link_to "Edit Profile", edit_user_post_path(@user.id), :class => "button" %><br><br>
 <center>
   <h3>Users Posts:</h3>
     <ul>
@@ -26,4 +26,3 @@
   <h3><%= link_to "Log Out", logout_path, method: 'delete' %> </h3>
 
 </center>
-
