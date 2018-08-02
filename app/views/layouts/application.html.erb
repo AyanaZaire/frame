@@ -1,15 +1,176 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Frame</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Frame</title>
+<style>
+/* GLOBAL FONT  */
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+/* * {
+    font-family: Helvetica, sans-serif;
+} */
 
-  <body>
-    <%= yield %>
-  </body>
+/* STYLE IMAGE BY CLASS */
+
+.grid_image {
+  object-fit: cover;
+  width:400px;
+  height:400px;
+}
+
+.user_image {
+  float: left;
+  object-fit: cover;
+  width:230px;
+  height:230px;
+  padding: 30px;
+  border-radius: 50%;
+}
+
+.post_image {
+  float: left;
+  object-fit: cover;
+  width:400px;
+  height:400px;
+  padding: 30px;
+}
+
+/* BUTTON  */
+
+.button {
+    background-color: #ED4337;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/* NAV BAR */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    /* border: 1px solid #bbb;
+    background-color: #fff; */
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ED4337;
+}
+
+.active {
+    background-color: #ED4337;
+}
+
+/* IMAGE GALLERY */
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+/* FORM STYLING  */
+
+input, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #ED4337;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #000;
+}
+
+div.form {
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+</style>
+<nav>
+  <ul>
+    <li><%= link_to "Home", posts_path %></li>
+    <li><%= link_to "Register", new_user_path %></li>
+    <li><%= link_to "Artists", users_path %></li>
+    <li><%= link_to "Categories", categories_path %></li>
+    <li><%= link_to "Critiques", critiques_path %></li>
+    <li style="float:right"><%= link_to "About", about_path %></li>
+  </ul>
+</nav>
+</head>
+<body>
+
+<%= yield %>
+</body>
 </html>

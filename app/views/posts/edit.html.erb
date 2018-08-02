@@ -1,3 +1,4 @@
+<div class="form">
 <h1>Edit Post Form</h1>
 
 <%= form_for @post do |f| %>
@@ -13,3 +14,4 @@
 <%= f.collection_select :category_id, Category.order(:medium), :id, :medium, include_blank: true %> </br>
 <%= f.submit %>
 <% end %>
+<div class="form">
