@@ -12,7 +12,7 @@
       <% @user.posts.each do |post| %>
         <div class="gallery">
           <%= image_tag post.post_img_url, :alt => post.title, :class => "grid_image" %>
-          <div class="desc"><%= link_to post.title, post_path(post)  %></div>
+          <div class="desc"><%= link_to post.title, user_post_path(@user, post)  %></div>
           </div>
       <% end %>
     </ul>

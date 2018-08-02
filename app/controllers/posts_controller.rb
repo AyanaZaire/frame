@@ -7,7 +7,7 @@ def index
     @posts = Post.search(params[:search])
       if @posts.empty?
         flash[:alert] = "No matching queries found"
-        redirect_to posts_path
+        redirect_to user_posts_path
       end
   else
       @posts = Post.all
@@ -43,7 +43,7 @@ end
 def update
   @post = Post.find(params[:id])
   @post.update(post_params)
-  redirect_to user_posts_path(@post)
+  redirect_to user_post_path(@post.user, @post)
 end
 
 def destroy
