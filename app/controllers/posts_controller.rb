@@ -29,7 +29,7 @@ def create
   @post = Post.new(post_params)
   if @post.valid?
     @post.save
-    redirect_to post_path(@post)
+    redirect_to user_post_path(@post)
   else
     #error message
     render :new

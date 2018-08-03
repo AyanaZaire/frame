@@ -167,8 +167,21 @@ div.form {
     <li><%= link_to "Categories", categories_path %></li>
     <li><%= link_to "Critiques", critiques_path %></li>
     <!-- <li style="float:right"><%= link_to "About", about_path %></li> -->
-    <li style="float:right"><%= link_to "Log Out", logout_path %></li>
+<% if session[:user_id] %> <!-- displays if a user is logged in  -->
+  <% user = User.find(session[:user_id]) %>
+           <button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <a> Welcome, <%= user.full_name %></a>
+           </button>
+           <div class="dropdown-menu dropdown-toggle-split">
+             <li><%= link_to "Edit Profile", edit_user_path(user) %></li>
+             <li><%= link_to "Log Out", logout_path %></li>
+           </div>
+<% end %>
+
+<% if session[:user_id] == nil %> <!-- displays if NO user is logged in  -->
+    <li style="float:right"><%= link_to "Log In", login_path %></li>
     <li style="float:right"><%= link_to "Register", new_user_path %></li>
+<%end%>
   </ul>
 </nav>
 </head>
