@@ -31,7 +31,7 @@
         <%= image_tag post.post_img_url, :class => "grid_image" %>
     </div>
     <div class="content">
-      <div class="header"><%= post.title %></div>
+      <div class="header"><%= link_to post.title, post_path(post) %></div>
     </div>
   </div>
   <% end %>
