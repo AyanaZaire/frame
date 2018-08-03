@@ -10,14 +10,14 @@ class SessionsController < ApplicationController
      flash[:alert] = "Incorrect username or password"
      redirect_to login_path
    else
-   @user = unauthenticated_user.authenticate(params[:password])
+    @user = unauthenticated_user.authenticate(params[:password])
       if @user && unauthenticated_user
-       session[:user_id] = @user.id
-       redirect_to user_path(@user)
-      else
-       flash[:alert] = "Incorrect username or password"
-       redirect_to login_path
-      end
+          session[:user_id] = @user.id
+          redirect_to user_path(@user)
+     else
+         flash[:alert] = "Incorrect username or password"
+         redirect_to login_path
+     end
     end
   end
 
