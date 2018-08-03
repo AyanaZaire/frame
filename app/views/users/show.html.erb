@@ -5,8 +5,8 @@
   <p>Bio: <%= @user.bio %></p><br><br>
 
 
-<% if session[:user_id] %>
-  <%= link_to "Create Post", new_user_post_path(@user.id), :class => "button" %><%= link_to "Edit Profile", edit_user_post_path(@user.id), :class => "button" %><br><br>
+<% if session[:user_id] == @user.id %>
+  <%= link_to "Create Post", new_user_post_path(@user.id), :class => "button" %><%= link_to "Edit Profile", edit_user_path(@user), :class => "button" %><br><br>
 <% end %>
 
 <center>

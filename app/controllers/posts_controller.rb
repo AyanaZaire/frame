@@ -47,7 +47,7 @@ def update
 end
 
 def destroy
-  @post.delete
+  @post.destroy
   redirect_to user_path(@user)
 end
 
