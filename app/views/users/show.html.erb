@@ -9,10 +9,9 @@
   <%= link_to "Create Post", new_user_post_path(@user.id), :class => "button" %><%= link_to "Edit Profile", edit_user_path(@user), :class => "button" %><br><br>
 <% end %>
 
-<center>
-  <h3>Artist Posts:</h3><br><br>
-   <%= pluralize(@user.posts.count, "post") %>
-</center>
+
+  <h3>Artist Posts:</h3><%= pluralize(@user.posts.count, "post") %><br><br>
+
 
 <div class="ui link cards">
 <% @user.posts.each do |post| %>
