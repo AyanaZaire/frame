@@ -1,7 +1,7 @@
 <div class="form">
 <h1>New Critique</h1>
 
-<%= form_for @critique do |f| %>
+<%= form_for [@user, @post, @critique] do |f| %>
 <%= f.label :content %>
 <%= f.text_area :content %> <br>
 <%= f.label :post_id, "Please Select Post to Critique" %>

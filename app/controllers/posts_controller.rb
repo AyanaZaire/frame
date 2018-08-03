@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 before_action :set_post, only: [:edit, :update, :destroy]
-skip_before_action :check_authentication, only: [:new, :create, :index, :show]
+skip_before_action :check_authentication, only: [:index, :show]
 
 def index
   if params[:search]
@@ -47,8 +47,8 @@ def update
 end
 
 def destroy
-  @post = Post.find(params[:id]).destroy
-  redirect_to user_posts_path
+  @post.delete
+  redirect_to user_path(@user)
 end
 
 
@@ -61,9 +61,5 @@ end
 def post_params
   params.require(:post).permit(:title, :description, :price, :post_img_url, :category_id, :user_id)
 end
-
-def require_login
-   return head(:forbidden) unless session.include? :user_id
- end
 
 end

@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
   resources :categories
-  resources :critiques, only: [:index, :show]
   resources :users do
     resources :posts do
       resources :critiques
     end
    end
-
+ 
   get 'about', to: 'static#about'
   get 'home', to: 'static#home'
 

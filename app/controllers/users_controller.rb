@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :check_authentication, only: [:new, :show, :create, :index]
+  before_action :check_authentication, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id]).destroy
+    redirect_to logout_path
   end
 
   private
