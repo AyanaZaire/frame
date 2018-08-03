@@ -19,7 +19,7 @@ class CritiquesController < ApplicationController
     @post = Post.find(@critique.post_id)
     if @critique.valid?
       @critique.save
-      redirect_to post_path(@post)
+      redirect_to user_post_path(@user, @post)
     else
       render :new
     end
@@ -34,7 +34,7 @@ class CritiquesController < ApplicationController
     @critique.update(critique_params)
     if @critique.valid?
       @critique.save
-      redirect_to critique_path(@critique)
+      redirect_to user_post_path(@critique.post.user, @critique.post)
     else
       render :edit
     end

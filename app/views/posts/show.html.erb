@@ -5,10 +5,16 @@ By: <%= link_to @post.user.name, user_path(@post.user_id) %>
 <p> <%= @post.description %> </p>
 Price: <%= @post.price %><br>
 
-<% if session[:user_id] %>
-<%= link_to "Edit", edit_user_post_path(@post), :class => "button" %>
-<%= link_to "Delete Post", user_post_path(@post), method: :delete, :class => "button" %>
+<% if session[:user_id] == @post.user_id %>
+<%= link_to "Edit", edit_user_post_path(@post.user, @post), :class => "button" %>
 <% end %>
+
+<% if session[:user_id] == @post.user_id %>
+<%= form_for [@user, @post], method: :delete do |f| %>
+  <%= f.submit "Delete", :class => "button" %>
+  <% end %>
+<% end %>
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -18,9 +24,10 @@ Price: <%= @post.price %><br>
 <div class="form">
 <h1>New Critique</h1>
 
-<%= form_for @critique do |f| %>
+<%= form_for [@user, @post, @critique], :url => user_post_critiques_path(@post.user, @post, @critique) do |f| %>
 <%= f.label :content %>
 <%= f.text_area :content %> <br>
+<%= f.hidden_field :user_id, :value => @post.user.id %>
 <%= f.hidden_field :post_id, :value => @post.id %>
 <%= f.submit "Submit Critique" %>
 <% end %>
