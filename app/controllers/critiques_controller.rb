@@ -1,6 +1,6 @@
 class CritiquesController < ApplicationController
-  before_action :check_authentication, only: [:new, :create, :edit, :update]
-  skip_before_action :check_authentication, only: [:show, :index]
+  before_action :check_authentication, only: [:edit, :update]
+  skip_before_action :check_authentication, only: [:show, :index, :create]
 
   def index
     @critiques = Critique.all
@@ -19,7 +19,7 @@ class CritiquesController < ApplicationController
     @post = Post.find(@critique.post_id)
     if @critique.valid?
       @critique.save
-      redirect_to user_post_path(@user, @post)
+      redirect_to user_post_path(@post.user, @post)
     else
       render :new
     end
@@ -47,6 +47,6 @@ class CritiquesController < ApplicationController
   private
 
   def critique_params
-    params.require(:critique).permit(:content, :post_id)
+    params.require(:critique).permit(:content, :post_id, :user_id)
   end
 end

@@ -1,24 +1,24 @@
+<div class="grid-container">
 
+<div class="grid-item">
 <%= image_tag @post.post_img_url, :class => "post_image" %>
 <h1> <%= @post.title %> </h1>
 By: <%= link_to @post.user.name, user_path(@post.user_id) %>
 <p> <%= @post.description %> </p>
 Price: <%= @post.price %><br>
+</div>
 
+<div class="grid-item">
 <% if session[:user_id] == @post.user_id %>
 <%= link_to "Edit", edit_user_post_path(@post.user, @post), :class => "button" %>
+<%= button_to('Delete', user_post_path(@post.user, @post), :method => 'delete', :class => "button") %>
 <% end %>
+</div>
+</div>
 
-<% if session[:user_id] == @post.user_id %>
-<%= form_for [@user, @post], method: :delete do |f| %>
-  <%= f.submit "Delete", :class => "button" %>
-  <% end %>
-<% end %>
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <div class="grid-container">
+
 <div class="grid-item">
 
 <div class="form">
@@ -27,7 +27,7 @@ Price: <%= @post.price %><br>
 <%= form_for [@user, @post, @critique], :url => user_post_critiques_path(@post.user, @post, @critique) do |f| %>
 <%= f.label :content %>
 <%= f.text_area :content %> <br>
-<%= f.hidden_field :user_id, :value => @post.user.id %>
+<%= f.hidden_field :user_id, :value => session[:user_id] %>
 <%= f.hidden_field :post_id, :value => @post.id %>
 <%= f.submit "Submit Critique" %>
 <% end %>
@@ -41,10 +41,10 @@ Price: <%= @post.price %><br>
   <div class="comment">
     <% @post.critiques.each do |crit| %>
     <a class="avatar">
-      <%= image_tag crit.post.user.user_img_url, :class => "critique_image" %>
+      <%= image_tag crit.user.user_img_url, :class => "critique_image" %>
     </a>
     <div class="content">
-      <a class="author"><%= crit.post.user.name %></a>
+      <a class="author"><%= crit.user.name %></a>
       <div class="text">
           <%= crit.content %>
         </div>
