@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    debugger
    unauthenticated_user = User.find_by(name: params[:name])
    @user = unauthenticated_user.authenticate(params[:password])
    if @user && unauthenticated_user
