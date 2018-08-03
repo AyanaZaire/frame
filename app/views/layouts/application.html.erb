@@ -2,9 +2,23 @@
 <html>
 <head>
   <title>Frame</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+
+
 <style>
 
-/* GLOBAL FONT  */
+/* GLOBAL STYLING  */
+
+.page-container {
+  width: 80%;
+  margin: 0 auto;
+}
 
 /* * {
     font-family: Helvetica, sans-serif;
@@ -18,11 +32,18 @@
   object-position: 50% 0%; /* default value: image is centered*/
 }
 
+.critique_image {
+  object-fit: cover !important;
+  height:40px !important;
+  object-position: 50% 0%; /* default value: image is centered*/
+}
+
 .user_image {
   float: left;
   object-fit: cover;
-  width:230px;
-  height:230px;
+  object-position: 50% 0%; /* default value: image is centered*/
+  width:250px;
+  height:250px;
   padding: 30px;
   border-radius: 50%;
 }
@@ -30,6 +51,7 @@
 .post_image {
   float: left;
   object-fit: cover;
+  object-position: 50% 0%; /* default value: image is centered*/
   width:400px;
   height:400px;
   padding: 30px;
@@ -50,17 +72,28 @@
     cursor: pointer;
 }
 
+.category_button {
+    background-color: #ED4337;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
 /* NAV BAR */
 
-ul {
+/* ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #fff;
-    /* border: 1px solid #bbb;
-    background-color: #fff; */
-    position: -webkit-sticky; /* Safari */
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
 }
@@ -88,7 +121,8 @@ li a:hover:not(.active) {
 
 .active {
     background-color: #ED4337;
-}
+}  */
+
 
 /* IMAGE GALLERY */
 
@@ -112,6 +146,20 @@ div.desc {
     padding: 15px;
     text-align: center;
 } */
+
+/* TABLE STYLING  */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #fff;
+  padding: 10px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+}
 
 /* FORM STYLING  */
 
@@ -158,38 +206,53 @@ div.form {
     padding: 20px;
 }
 
+div.login_form {
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+div.search_form {
+    width: 700px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px;
+}
+
 </style>
-<nav>
-  <ul>
-    <li><%= link_to "Home", home_path %></li>
-    <li><%= link_to "Posts", posts_path %></li>
-    <li><%= link_to "Artists", users_path %></li>
-    <li><%= link_to "Categories", categories_path %></li>
-
-    <!-- <li style="float:right"><%= link_to "About", about_path %></li> -->
-<% if session[:user_id]%> <!-- displays if a user is logged in  -->
-  <% @user = User.find(session[:user_id])%>
-           <button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <a> Welcome, <%= @user.name %></a>
-           </button>
-           <div class="dropdown-menu dropdown-toggle-split">
-             <li><%= link_to "Edit Profile", edit_user_path(@user) %></li>
-             <li><%= link_to "Log Out", logout_path %></li>
-           </div>
-<% end %>
-
-<% if session[:user_id] == nil %> <!-- displays if NO user is logged in  -->
-    <li style="float:right"><%= link_to "Log In", login_path %></li>
-    <li style="float:right"><%= link_to "Register", new_user_path %></li>
-<%end%>
-  </ul>
-</nav>
 </head>
 <body>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+    <div class="ui large menu">
+      <%= link_to "Home", home_path, :class => "active item" %>
+      <%= link_to "Posts", posts_path, :class => "item" %>
+      <%= link_to "Artists", users_path, :class => "item" %>
+      <div class="item">
+        <% if session[:user_id] == nil %> <!-- displays if NO user is logged in  -->
+          <div class="ui primary button"><%= link_to "Log In", login_path %></div>
+          <div class="ui primary button"><%= link_to "Register", new_user_path %></div>
+        <%end%>
+      </div>
+      <div class="right menu">
+        <div class="ui dropdown item">
+          <% if session[:user_id] %> <!-- displays if a user is logged in  -->
+            <% user = User.find(session[:user_id]) %>
+            Welcome, <%= user.name %><i class="dropdown icon"></i>
+            <% end %>
+            <div class="menu">
+              <%= link_to "Edit Profile", edit_user_path(user), :class => "item" %>
+              <%= link_to "Log Out", logout_path, :class => "item" %>
+            </div>
+          </div>
+        </div>
+    </div>
 
+<div class = "page-container">
 <%= yield %>
+</div>
+
 </body>
 </html>

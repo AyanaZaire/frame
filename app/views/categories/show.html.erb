@@ -1,8 +1,15 @@
 <h1><%= @category.medium %></h1>
 
+
+  <div class="ui link cards">
   <% @category.posts.each do |cat| %>
-  <div class="gallery">
-  <%= image_tag cat.post_img_url, :class => "grid_image" %>
-  <div class="desc"><%= link_to cat.title, post_path(cat) %></div>
+    <div class="card">
+      <div class="image">
+        <%= image_tag cat.post_img_url, :class => "grid_image" %>
+    </div>
+    <div class="content">
+      <div class="header"><%= link_to cat.title, post_path(cat) %></div>
+    </div>
   </div>
   <% end %>
+  </div>

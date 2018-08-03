@@ -8,11 +8,18 @@ Price: <%= @post.price %><br>
 <% if session[:user_id] == @post.user_id %>
 <%= link_to "Edit", edit_user_post_path(@post.user, @post), :class => "button" %>
 <% end %>
+
 <% if session[:user_id] == @post.user_id %>
 <%= form_for [@user, @post], method: :delete do |f| %>
   <%= f.submit "Delete", :class => "button" %>
   <% end %>
 <% end %>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<div class="grid-container">
+<div class="grid-item">
 
 <div class="form">
 <h1>New Critique</h1>
@@ -25,12 +32,30 @@ Price: <%= @post.price %><br>
 <%= f.submit "Submit Critique" %>
 <% end %>
 </div>
+</div>
 
-<h1><%= @post.title %> Critiques</h1>
+<div class="grid-item">
 
-<ul>
-  <% @post.critiques.each do |crit| %>
-  <li><%= crit.post.title %></li>
-  <li><%= crit.content %></li><br>
-  <% end %>
-</ul>
+<div class="ui comments">
+  <h3 class="ui dividing header"><%= @post.title %> Critiques</h3>
+  <div class="comment">
+    <% @post.critiques.each do |crit| %>
+    <a class="avatar">
+      <%= image_tag crit.post.user.user_img_url, :class => "critique_image" %>
+    </a>
+    <div class="content">
+      <a class="author"><%= crit.post.user.name %></a>
+      <div class="text">
+          <%= crit.content %>
+        </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+</div>
+
+<br>
+<br>
+<br>

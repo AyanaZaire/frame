@@ -1,7 +1,14 @@
-<h1>Users</h1>
+<h1>Artists</h1>
 
-<ul>
+<div class="ui link cards">
   <% @users.each do |user| %>
-    <li><%= link_to user.name, user_path(user) %> </li>
-  <% end %>
-</ul>
+  <div class="card">
+    <div class="image">
+      <%= image_tag user.user_img_url, :class => "grid_image" %>
+  </div>
+  <div class="content">
+    <div class="header"><%= link_to user.name, user_path(user) %></div>
+  </div>
+</div>
+<% end %>
+</div>

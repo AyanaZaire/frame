@@ -1,12 +1,18 @@
-
-
+<center>
 <h1>All Posts</h1>
 
 
-<%= form_tag(posts_path, method: :get) do %>
+<%= link_to "PAINTING", category_path(1), :class => "button" %>
+<%= link_to "SCULPTURE", category_path(3), :class => "button" %>
+<%= link_to "PHOTOGRAPHY", category_path(2), :class => "button" %>
+<%= link_to "MIXED MEDIA", category_path(4), :class => "button" %>
+
+<div class="search_form">
+  <%= form_tag(posts_path, method: :get) do %>
    <%= text_field_tag :search, params[:search] %>
    <%= submit_tag 'Search', :name => nil %>
 <% end %>
+</div>
 
 <% if flash[:alert] %>
   <div style="color:red"><%= flash[:alert] %></div>
@@ -36,3 +42,5 @@
   </div>
   <% end %>
   </div>
+  
+</center>

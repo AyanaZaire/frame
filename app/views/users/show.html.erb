@@ -1,4 +1,4 @@
-<h1>User Profile</h1>
+<h1>Artist Profile</h1>
 
   <%= image_tag @user.user_img_url, :alt => @user.name, :class => "user_image" %>
   <h2>Name: <%= @user.name %></h2><br>
@@ -7,23 +7,33 @@
 <% if session[:user_id] %>
   <%= link_to "Create Post", new_user_post_path(@user.id), :class => "button" %><%= link_to "Edit Profile", edit_user_post_path(@user.id), :class => "button" %><br><br>
 <% end %>
+
 <center>
-  <h3>Users Posts:</h3>
-    <ul>
-      <% @user.posts.each do |post| %>
-        <div class="gallery">
-          <%= image_tag post.post_img_url, :alt => post.title, :class => "grid_image" %>
-          <div class="desc"><%= link_to post.title, user_post_path(@user, post)  %></div>
-          </div>
-      <% end %>
-    </ul>
+  <h3>Artist Posts:</h3><br><br>
+</center>
+
+<div class="ui link cards">
+<% @user.posts.each do |post| %>
+  <div class="card">
+    <div class="image">
+      <%= image_tag post.post_img_url, :alt => post.title, :class => "grid_image" %>
+  </div>
+  <div class="content">
+    <div class="header"><%= link_to post.title, user_post_path(@user, post) %></div>
+  </div>
+</div>
+<% end %>
+</div>
+
+<br><br>
+<center>
+
+
 <% if session[:user_id] == @user.id %>
   <h3>Delete Account</h3>
       <%= form_for @user, method: :delete do |f| %>
         <%= f.submit "Delete", :class => "button" %>
       <% end %>
 <% end %>
-
-
 
 </center>
