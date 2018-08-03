@@ -1,7 +1,7 @@
 <div class="form">
 <h1>New Post Form</h1>
 
-<%= form_for @post do |f| %>
+<%= form_for [@user, @post] do |f| %>
 <%= f.label :title %>
 <%= f.text_field :title %> <br>
 <%= f.label :description %>
@@ -10,11 +10,9 @@
 <%= f.number_field :price, :step => "0.01" %> <br>
 <%= f.label :post_img_url, "Please Copy and Paste Image URL" %>
 <%= f.text_field :post_img_url %> <br>
-<%= f.label :category_id, "Please Select Artist" %>
-<%= f.collection_select :user_id, User.order(:name), :id, :name, include_blank: true %> </br>
 <%= f.label :category_id, "Please Select a Category" %>
 <%= f.collection_select :category_id, Category.order(:medium), :id, :medium, include_blank: true %> </br>
+<%= f.hidden_field :user_id, :value => @user.id %>
 <%= f.submit %>
 <% end %>
-
-</div>
+<div class="form">

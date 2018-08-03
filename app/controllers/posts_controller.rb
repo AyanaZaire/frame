@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-before_action :set_post, only: [:edit, :update, :destroy]
-skip_before_action :check_authentication, only: [:new, :create, :index, :show]
+before_action :set_post, only: [:edit, :update, :delete]
+skip_before_action :check_authentication, only: [:index, :show]
 
 def index
   if params[:search]
@@ -29,7 +29,7 @@ def create
   @post = Post.new(post_params)
   if @post.valid?
     @post.save
-    redirect_to user_post_path(@post)
+    redirect_to user_post_path(@post.user, @post)
   else
     #error message
     render :new
@@ -61,6 +61,8 @@ end
 def post_params
   params.require(:post).permit(:title, :description, :price, :post_img_url, :category_id, :user_id)
 end
+
+
 
 def require_login
    return head(:forbidden) unless session.include? :user_id

@@ -5,9 +5,9 @@ By: <%= link_to @post.user.name, user_path(@post.user_id) %>
 <p> <%= @post.description %> </p>
 Price: <%= @post.price %><br>
 
-<% if session[:user_id] %>
-<%= link_to "Edit", edit_user_post_path(@post), :class => "button" %>
-<%= link_to "Delete Post", user_post_path(@post), method: :delete, :class => "button" %>
+<% if session[:user_id] == @post.user_id %>
+<%= link_to "Edit", edit_user_post_path(@post.user, @post), :class => "button" %>
+<%= button_to('Delete', user_post_path(@post.user, @post), :method => 'delete', :class => "button") %>
 <% end %>
 <div class="form">
 <h1>New Critique</h1>

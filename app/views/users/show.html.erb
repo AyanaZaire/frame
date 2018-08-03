@@ -4,11 +4,9 @@
   <h2>Name: <%= @user.name %></h2><br>
   <p>Bio: <%= @user.bio %></p><br><br>
 
-<% if session[:user_id] %>
-  <%= link_to "Create Post", new_user_post_path(@user.id), :class => "button" %><%= link_to "Edit Profile", edit_user_post_path(@user.id), :class => "button" %><br><br>
-<% end %>
 <center>
   <h3>Users Posts:</h3>
+    <%= pluralize(@user.posts.count, "post") %>
     <ul>
       <% @user.posts.each do |post| %>
         <div class="gallery">
@@ -17,12 +15,6 @@
           </div>
       <% end %>
     </ul>
-<% if session[:user_id] %>
-  <h3>Delete Account</h3>
-      <%= form_for @user, method: :delete do |f| %>
-        <%= f.submit "Delete", :class => "button" %>
-      <% end %>
-<% end %>
 
 
 

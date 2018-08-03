@@ -155,7 +155,7 @@ div.form {
     margin: 0 auto;
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+    padding: 80px;
 }
 
 </style>
@@ -170,9 +170,10 @@ div.form {
 <% if session[:user_id] %> <!-- displays if a user is logged in  -->
   <% user = User.find(session[:user_id]) %>
            <button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <a> Welcome, <%= user.full_name %></a>
+             <a> Welcome, <%= user.name %></a>
            </button>
            <div class="dropdown-menu dropdown-toggle-split">
+             <li><%= link_to "Create Post", new_user_post_path(user) %></li>
              <li><%= link_to "Edit Profile", edit_user_path(user) %></li>
              <li><%= link_to "Log Out", logout_path %></li>
            </div>
