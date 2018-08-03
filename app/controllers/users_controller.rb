@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :check_authentication, only: [:new, :show, :create, :index]
+  before_action :check_authentication, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
