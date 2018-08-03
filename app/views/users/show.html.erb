@@ -4,12 +4,14 @@
   <h2>Name: <%= @user.name %></h2><br>
   <p>Bio: <%= @user.bio %></p><br><br>
 
+
 <% if session[:user_id] %>
   <%= link_to "Create Post", new_user_post_path(@user.id), :class => "button" %><%= link_to "Edit Profile", edit_user_post_path(@user.id), :class => "button" %><br><br>
 <% end %>
 
 <center>
   <h3>Artist Posts:</h3><br><br>
+   <%= pluralize(@user.posts.count, "post") %>
 </center>
 
 <div class="ui link cards">
@@ -35,5 +37,6 @@
         <%= f.submit "Delete", :class => "button" %>
       <% end %>
 <% end %>
+
 
 </center>

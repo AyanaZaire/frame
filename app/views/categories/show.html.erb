@@ -1,5 +1,7 @@
 <h1><%= @category.medium %></h1>
 
+<h4><%= pluralize(@category.posts.count, "work") %></h2>
+
 
   <div class="ui link cards">
   <% @category.posts.each do |cat| %>
