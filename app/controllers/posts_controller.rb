@@ -12,6 +12,7 @@ def index
   else
       @posts = Post.all
   end
+  @categories = Category.all
   @critiques = Critique.all
 end
 

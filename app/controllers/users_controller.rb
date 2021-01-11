@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       @user.save
       redirect_to user_path(@user)
     else
+      flash[:alert] = "Account Creation Errors: #{@user.errors.full_messages.to_sentence}. Additionally, make sure you're using a valid image URL."
       render :new
     end
   end

@@ -1,11 +1,9 @@
 <center>
 <h1>All Posts</h1>
 
-
-<%= link_to "PAINTING", category_path(1), :class => "button" %>
-<%= link_to "SCULPTURE", category_path(3), :class => "button" %>
-<%= link_to "PHOTOGRAPHY", category_path(2), :class => "button" %>
-<%= link_to "MIXED MEDIA", category_path(4), :class => "button" %>
+<% @categories.each do |cat| %>
+  <%= link_to cat.medium, category_path(cat), :class => "button" %>
+<% end %>
 
 <div class="search_form">
   <%= form_tag(posts_path, method: :get) do %>
@@ -42,5 +40,5 @@
   </div>
   <% end %>
   </div>
-  
+
 </center>

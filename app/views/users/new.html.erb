@@ -1,6 +1,10 @@
 <div class="form">
 <h1>Register</h1>
 
+<% if flash[:alert] %>
+  <div style="color:red"><%= flash[:alert] %></div>
+<% end %>
+
   <%= form_for @user do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
